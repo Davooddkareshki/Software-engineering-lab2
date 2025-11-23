@@ -25,6 +25,9 @@ public class ReservationService {
             case CASH:
                 paymentProcessor.payByCash(res.totalPrice());
                 break;
+            case ON_SITE:
+                paymentProcessor.payOnSite(res.totalPrice());
+                break;
         }
 
         System.out.println("----- INVOICE -----");

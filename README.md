@@ -27,7 +27,28 @@
 </table>
 
 <br>
-
+<h4>2. تغییرات مربوط به افزودن روش پرداخت (On-Site Payment)</h4>
+<table style="border-collapse: collapse; width: 100%; text-align: right; direction: rtl;">
+  <thead>
+    <tr style="background-color: #f2f2f2;">
+      <th style="border: 1px solid #dddddd; padding: 8px;">ردیف</th>
+      <th style="border: 1px solid #dddddd; padding: 8px;">کلاس تغییر یافته</th>
+      <th style="border: 1px solid #dddddd; padding: 8px;">توضیحات</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #dddddd; padding: 8px;">۱</td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">PaymentProcessor</td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">افزودن تابع <code>payOnSite</code> برای پرداخت حضوری</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #dddddd; padding: 8px;">۲</td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">ReservationService</td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">افزودن <code>case ON_SITE</code> به متد <code>makeReservation</code></td>
+    </tr>
+  </tbody>
+</table>
 <hr>
 <br>
 
@@ -62,7 +83,24 @@
       <td style="border: 1px solid #dddddd; padding: 8px; color: red;"><strong>مورد نقض</strong></td>
       <td style="border: 1px solid #dddddd; padding: 8px;">کلاس <code>LuxuryRoom</code> رفتارهای خاصی (مثل <code>addFreeDinner</code>) دارد که در کلاس والد (Room) نیست و در کد اصلی (ReservationService) به صورت Hard-code و وابسته به نوع خاص استفاده می‌شود.</td>
     </tr>
-
+        <tr>
+      <td style="border: 1px solid #dddddd; padding: 8px;"><strong>ISP</strong><br><span style="font-size: 0.8em; color: #555;">(Interface Segregation)</span></td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">MessageSender</td>
+      <td style="border: 1px solid #dddddd; padding: 8px; color: red;"><strong>مورد نقض</strong></td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">اینترفیس نام متد <code>sendEmail</code> را اجبار می‌کند. اگر بخواهیم <code>SmsSender</code> داشته باشیم، پیاده‌سازی متدی با نام "sendEmail" برای ارسال پیامک بی‌معنی و گیج‌کننده است.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #dddddd; padding: 8px;"><strong>DIP</strong><br><span style="font-size: 0.8em; color: #555;">(Dependency Inversion)</span></td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">ReservationService</td>
+      <td style="border: 1px solid #dddddd; padding: 8px; color: red;"><strong>مورد نقض</strong></td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">ماژول سطح بالا (سرویس رزرو) مستقیماً به ماژول‌های سطح پایین (مثل کلاس‌های واقعی <code>EmailSender</code> و <code>PaymentProcessor</code>) وابسته است و از <code>new</code> استفاده می‌کند، به جای اینکه به Abstraction وابسته باشد.</td>
+    </tr>
+     <tr>
+      <td style="border: 1px solid #dddddd; padding: 8px;"><strong>PLK</strong><br><span style="font-size: 0.8em; color: #555;">(Law of Demeter)</span></td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">ReservationService</td>
+      <td style="border: 1px solid #dddddd; padding: 8px; color: red;"><strong>مورد نقض</strong></td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">دسترسی زنجیره‌ای به ویژگی‌های اشیاء دیگر. مثال: <code>res.customer.name</code> یا <code>res.room.price</code>. کلاس سرویس نباید از ساختار داخلی <code>Reservation</code> خبر داشته باشد.</td>
+    </tr>
 
   </tbody>
 </table>
