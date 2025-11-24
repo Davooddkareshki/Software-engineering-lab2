@@ -8,11 +8,11 @@ public class ReservationService {
     private PaymentProcessor paymentProcessor = new PaymentProcessor();
 
     public void makeReservation(Reservation res, PaymentMethods paymentType, Notifier notifier){
-        System.out.println("Processing reservation for " + res.customer.name);
+        System.out.println("Processing reservation for " + res.getCustomer().getName());
 
-        if(res.customer.city.equals("Paris")){
+        if(res.getCustomer().getCity().equals("Paris")){
             System.out.println("Apply city discount for Paris!");
-            res.room.price *= 0.9;
+            res.getRoom().discountPrice();
         }
 
         switch (paymentType){
@@ -28,21 +28,20 @@ public class ReservationService {
         }
 
         System.out.println("----- INVOICE -----");
-        System.out.println("hotel.Customer: " + res.customer.name);
-        System.out.println("hotel.Room: " + res.room.number + " (" + res.room.type + ")");
+        System.out.println("hotel.Customer: " + res.getCustomer().getName());
+        System.out.println("hotel.Room: " + res.getRoom().getNumber() + " (" + res.getRoom().getType() + ")");
         System.out.println("Total: " + res.totalPrice());
         System.out.println("-------------------");
 
+        MessageService messageService = new MessageService();
+        messageService.sendMessage(res.getCustomer(),"Your reservation confirmed!", this.notifier);
 
         switch (this.notifier){
+
             case EMAIL:
-                EmailSender emailSender = new EmailSender();
-                emailSender.sendEmail(res.customer.email, "Your reservation confirmed!");
                 break;
-            // NEW ADDITION
+
             case SMS:
-                SmsSender smsSender = new SmsSender();
-                smsSender.sendSms(res.customer.mobile, "Your reservation confirmed!");
                 break;
             default:
                 System.out.println("There is no Message Provider");

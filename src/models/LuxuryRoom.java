@@ -4,6 +4,6 @@ public class LuxuryRoom extends Room {
         super(number, "luxury", price);
     }
     public void addFreeDinner(){
-        System.out.println("Free dinner added for luxury room " + number);
+        System.out.println("Free dinner added for luxury room " + this.getNumber());
     }
 }
