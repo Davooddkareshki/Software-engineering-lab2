@@ -26,4 +26,10 @@ public class Reservation {
     public int getNights() {
         return nights;
     }
+    public String getCustomerName() {
+        if (this.customer != null) {
+            return this.customer.getName();
+        }
+        return "Unknown";
+    }
 }

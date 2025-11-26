@@ -14,7 +14,7 @@ public class ReservationService {
     }
 
     public void makeReservation(Reservation res) {
-        System.out.println("Processing reservation for " + res.getCustomer().getName());
+        System.out.println("Customer: " + res.getCustomerName());
 
         if(res.getCustomer().getCity().equals("Paris")){
             System.out.println("Apply city discount for Paris!");
