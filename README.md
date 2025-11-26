@@ -62,6 +62,18 @@
       <td style="border: 1px solid #dddddd; padding: 8px; color: red;"><strong>مورد نقض</strong></td>
       <td style="border: 1px solid #dddddd; padding: 8px;">کلاس <code>LuxuryRoom</code> رفتارهای خاصی (مثل <code>addFreeDinner</code>) دارد که در کلاس والد (Room) نیست و در کد اصلی (ReservationService) به صورت Hard-code و وابسته به نوع خاص استفاده می‌شود.</td>
     </tr>
+        <tr>
+      <td style="border: 1px solid #dddddd; padding: 8px;"><strong>ISP</strong><br><span style="font-size: 0.8em; color: #555;">(Interface Segregation)</span></td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">PaymentProcessor</td>
+      <td style="border: 1px solid #dddddd; padding: 8px; color: red;"><strong>مورد نقض</strong></td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">کلاس <code>PaymentProcessor</code> همه روش‌های پرداخت (نقد، کارت، آنلاین) را در خود دارد. اگر بخواهیم فقط از یکی استفاده کنیم یا یک روش جدید اضافه کنیم، کلاس وابسته (Service) درگیر متدهای غیرمرتبط می‌شود. در واقع یک رابط بزرگ و "چاق" داریم.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #dddddd; padding: 8px;"><strong>DIP</strong><br><span style="font-size: 0.8em; color: #555;">(Dependency Inversion)</span></td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">ReservationService</td>
+      <td style="border: 1px solid #dddddd; padding: 8px; color: red;"><strong>مورد نقض</strong></td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">در کلاس <code>ReservationService</code>، ماژول‌های سطح پایین (مثل <code>PaymentProcessor</code> و <code>EmailSender</code>) مستقیماً با دستور <code>new</code> ساخته شده‌اند. این یعنی وابستگی به پیاده‌سازی (Implementation) به جای وابستگی به انتزاع (Abstraction).</td>
+    </tr>
 
 
   </tbody>
