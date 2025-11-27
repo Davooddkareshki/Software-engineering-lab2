@@ -27,6 +27,29 @@
 </table>
 
 <br>
+<h4>2. تغییرات مربوط به افزودن روش پرداخت (On-Site Payment)</h4>
+<table style="border-collapse: collapse; width: 100%; text-align: right; direction: rtl;">
+  <thead>
+    <tr style="background-color: #f2f2f2;">
+      <th style="border: 1px solid #dddddd; padding: 8px;">ردیف</th>
+      <th style="border: 1px solid #dddddd; padding: 8px;">کلاس تغییر یافته</th>
+      <th style="border: 1px solid #dddddd; padding: 8px;">توضیحات</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #dddddd; padding: 8px;">۱</td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">PaymentProcessor</td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">افزودن تابع <code>payOnSite</code> برای پرداخت حضوری</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #dddddd; padding: 8px;">۲</td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">ReservationService</td>
+      <td style="border: 1px solid #dddddd; padding: 8px;">افزودن <code>case ON_SITE</code> به متد <code>makeReservation</code></td>
+    </tr>
+  </tbody>
+</table>
+
 
 <hr>
 <br>
